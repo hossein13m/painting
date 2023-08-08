@@ -4,6 +4,10 @@ import React from 'react';
 import { type Paint, usePaint } from '@/app/hooks/usePaint';
 
 export default function Painting() {
+    function toggleTheme(): void {
+        document.body.classList.toggle('dark');
+    }
+
     const { canvasRef, onMouseDown } = usePaint(paintLine);
     const canvasWidth = window.innerWidth - 100;
     const canvasHeight = window.innerHeight - 300;
@@ -52,13 +56,13 @@ export default function Painting() {
                                 Clear
                             </button>
 
-                            <button className="bg-sky-200 text-black rounded-xl p-1 my-4" id="theme">
+                            <button onClick={toggleTheme} className="bg-sky-200 text-black rounded-xl p-1 my-4" id="theme">
                                 Change Theme
                             </button>
                         </div>
                     </div>
                 </header>
-                <section className="screen-height flex justify-center dark:bg-red-400 bg-white">
+                <section className="screen-height flex justify-center dark:bg-black bg-white">
                     <div>
                         <canvas
                             width={canvasWidth}
