@@ -15,7 +15,7 @@ export function usePaint(onPaint: ({ ctx, currentPoint, prevPoint }: Paint) => v
     const prevAxis = useRef<Point | null>(null);
 
     function onMouseDown(): void {
-        setMouseDown(!mouseDown);
+        setMouseDown(true);
     }
 
     function clearCanvas(): void {
@@ -39,7 +39,7 @@ export function usePaint(onPaint: ({ ctx, currentPoint, prevPoint }: Paint) => v
         }
 
         function mouseUpEventHandler() {
-            setMouseDown(!mouseDown);
+            setMouseDown(false);
             prevAxis.current = null;
         }
 
