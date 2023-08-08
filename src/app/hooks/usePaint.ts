@@ -18,6 +18,14 @@ export function usePaint(onPaint: ({ ctx, currentPoint, prevPoint }: Paint) => v
         setMouseDown(!mouseDown);
     }
 
+    function clearCanvas(): void {
+        const canvas = canvasRef.current;
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        if (!ctx) return;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+
     useEffect(() => {
         function mouseMoveEventHandler(event: MouseEvent): void {
             if (!mouseDown) return;
@@ -59,5 +67,6 @@ export function usePaint(onPaint: ({ ctx, currentPoint, prevPoint }: Paint) => v
     return {
         canvasRef,
         onMouseDown,
+        clearCanvas,
     };
 }

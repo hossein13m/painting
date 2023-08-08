@@ -10,7 +10,7 @@ export default function Painting() {
         document.body.classList.toggle('dark');
     }
 
-    const { canvasRef, onMouseDown } = usePaint(paintLine);
+    const { canvasRef, onMouseDown, clearCanvas } = usePaint(paintLine);
     const canvasWidth = window.innerWidth - 100;
     const canvasHeight = window.innerHeight - 300;
 
@@ -54,7 +54,7 @@ export default function Painting() {
                             <input type="range" id="lineWidth" name="lineWidth" min="0" step="1" max="50" />
                         </div>
                         <div className="flex">
-                            <button className="bg-sky-200 text-black rounded-xl p-1 m-4" id="clear">
+                            <button type="button" onClick={clearCanvas} className="bg-sky-200 text-black rounded-xl p-1 m-4" id="clear">
                                 Clear
                             </button>
 
