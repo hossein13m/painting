@@ -1,9 +1,11 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { type Paint, usePaint } from '@/app/hooks/usePaint';
 
 export default function Painting() {
+    const [colorPicker, setColorPicker] = useState('#FF0000');
+
     function toggleTheme(): void {
         document.body.classList.toggle('dark');
     }
@@ -15,7 +17,7 @@ export default function Painting() {
     function paintLine({ prevPoint, currentPoint, ctx }: Paint) {
         const { x: currentX, y: currentY } = currentPoint;
 
-        const color = '#000';
+        const color = colorPicker;
         const fontSize = 5;
         const circleRadius = 2;
 
@@ -44,7 +46,7 @@ export default function Painting() {
                                 <label htmlFor="stroke" className="mx-2">
                                     Color:
                                 </label>
-                                <input id="stroke" name="stroke" type="color" />
+                                <input value={colorPicker} onChange={(e) => setColorPicker(e.target.value)} name="stroke" type="color" />
                             </div>
 
                             <label htmlFor="lineWidth">Font Size:</label>
