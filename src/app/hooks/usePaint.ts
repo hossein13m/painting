@@ -56,11 +56,15 @@ export function usePaint(onPaint: ({ ctx, currentPoint, prevPoint }: Paint) => v
         }
 
         canvasRef.current?.addEventListener('mousemove', mouseMoveEventHandler);
-        window.addEventListener('mouseup', mouseUpEventHandler);
+        if (typeof window !== 'undefined') {
+            window.addEventListener('mouseup', mouseUpEventHandler);
+        }
 
         return () => {
             canvasRef.current?.removeEventListener('mousemove', mouseMoveEventHandler);
-            window.removeEventListener('mouseup', mouseUpEventHandler);
+            if (typeof window !== 'undefined') {
+                window.removeEventListener('mouseup', mouseUpEventHandler);
+            }
         };
     }, [onPaint]);
 
