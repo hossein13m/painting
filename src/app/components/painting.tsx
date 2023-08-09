@@ -5,6 +5,7 @@ import { type Paint, usePaint } from '@/app/hooks/usePaint';
 
 export default function Painting() {
     const [colorPicker, setColorPicker] = useState('#FF0000');
+    const [lineSize, setLineSize] = useState(5);
 
     function toggleTheme(): void {
         document.body.classList.toggle('dark');
@@ -18,7 +19,7 @@ export default function Painting() {
         const { x: currentX, y: currentY } = currentPoint;
 
         const color = colorPicker;
-        const fontSize = 5;
+        const fontSize = lineSize;
         const circleRadius = 2;
 
         let startPoint = prevPoint ?? currentPoint;
@@ -51,7 +52,16 @@ export default function Painting() {
 
                             <label htmlFor="lineWidth">Font Size:</label>
 
-                            <input type="range" id="lineWidth" name="lineWidth" min="0" step="1" max="50" />
+                            <input
+                                type="range"
+                                id="lineWidth"
+                                name="lineWidth"
+                                min="0"
+                                step="1"
+                                max="50"
+                                value={lineSize}
+                                onChange={(e) => setLineSize(e.target.value)}
+                            />
                         </div>
                         <div className="flex">
                             <button type="button" onClick={clearCanvas} className="bg-sky-200 text-black rounded-xl p-1 m-4" id="clear">
