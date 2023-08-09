@@ -12,8 +12,8 @@ export default function Painting() {
     }
 
     const { canvasRef, onMouseDown, clearCanvas } = usePaint(paintLine);
-    const canvasWidth = window.innerWidth - 100;
-    const canvasHeight = window.innerHeight - 300;
+    const canvasWidth = typeof window !== 'undefined' ? window.innerWidth - 100 : 500;
+    const canvasHeight = typeof window !== 'undefined' ? window.innerHeight - 300 : 500;
 
     function paintLine({ prevPoint, currentPoint, ctx }: Paint) {
         const { x: currentX, y: currentY } = currentPoint;
