@@ -5,7 +5,7 @@ import { type Paint, usePaint } from '@/app/hooks/usePaint';
 
 export default function Painting() {
     const [colorPicker, setColorPicker] = useState('#FF0000');
-    const [lineSize, setLineSize] = useState(5);
+    const [lineSize, setLineSize] = useState('5');
 
     function toggleTheme(): void {
         document.body.classList.toggle('dark');
@@ -19,7 +19,7 @@ export default function Painting() {
         const { x: currentX, y: currentY } = currentPoint;
 
         const color = colorPicker;
-        const fontSize = lineSize;
+        const fontSize = +lineSize;
         const circleRadius = 2;
 
         let startPoint = prevPoint ?? currentPoint;
