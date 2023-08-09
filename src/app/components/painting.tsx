@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { type Paint, usePaint } from '@/app/hooks/usePaint';
+import useDeviceSize from '@/app/hooks/useDeviceSize';
 
 export default function Painting() {
     const [colorPicker, setColorPicker] = useState('#FF0000');
@@ -12,8 +13,8 @@ export default function Painting() {
     }
 
     const { canvasRef, onMouseDown, clearCanvas } = usePaint(paintLine);
-    const canvasWidth = typeof window !== 'undefined' ? window.innerWidth - 100 : 500;
-    const canvasHeight = typeof window !== 'undefined' ? window.innerHeight - 300 : 500;
+    const [canvasWidth, canvasHeight] = useDeviceSize();
+    console.log(canvasWidth);
 
     function paintLine({ prevPoint, currentPoint, ctx }: Paint) {
         const { x: currentX, y: currentY } = currentPoint;
